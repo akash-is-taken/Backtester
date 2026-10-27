@@ -26,11 +26,7 @@ def test_run_strategy_returns_expected_outputs(strategy):
         "Price": np.linspace(100, 200, 100)
     }).set_index("Date")
 
-    # monkeypatch global df used inside run_strategy
-    import backtester_v3
-    backtester_v3.df = df
-
-    total_return, sharpe_ratio, equity_curve = run_strategy(strategy)
+    total_return, sharpe_ratio, equity_curve = run_strategy(df, strategy)
 
     assert isinstance(total_return, float)
     assert isinstance(sharpe_ratio, float)
